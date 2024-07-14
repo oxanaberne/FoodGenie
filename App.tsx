@@ -2,15 +2,8 @@ import * as React from 'react';
 import { Text, View, StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
-import GrosseryListScreen from './components/grossery-list/GrosseryListScreen';
-
-function PantryScreen() {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Pantry!</Text>
-    </View>
-  );
-}
+import GrosseryListScreen from './screens/GrosseryListScreen';
+import PantryScreen from './screens/PantryScreen';
 
 function SuggestionsScreen() {
   return (
