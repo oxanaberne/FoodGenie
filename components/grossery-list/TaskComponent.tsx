@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 
-const Task = (props: any) => {
+const TaskComponent = (props: any) => {
   return (
 	<View style={styles.item}>
 		<TouchableOpacity style={styles.square}></ TouchableOpacity>
@@ -39,4 +39,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Task;
+export default TaskComponent;

@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { StyleSheet } from 'react-native';
 import { List } from 'react-native-paper';
-import Task from './Task';
+import Task from './TaskComponent';
 
-const Accordion = (param: any) => {
+const AccordionComponent = (param: any) => {
   const [expanded, setExpanded] = React.useState(true);
 
   const handlePress = () => setExpanded(!expanded);
@@ -15,8 +15,8 @@ const Accordion = (param: any) => {
 		style={styles.accordion}
 		>
 
-		{param.aliments.map((aliment: any) => (
-			<Task text={aliment} />
+		{param.aliments.map((aliment: any, index: any) => (
+			<Task key={index} text={aliment} />
 		))}
 
 	  </List.Accordion>
@@ -38,4 +38,4 @@ const styles = StyleSheet.create({
 	},
 });
 
-export default Accordion;
+export default AccordionComponent;

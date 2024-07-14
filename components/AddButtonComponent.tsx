@@ -2,7 +2,7 @@ import React from 'react';
 import { Button, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 
-const AddButton = (props: any) => {
+const AddButtonComponent = (props: any) => {
   return (
 	<View style={styles.button}>
 	  <Button title={ " + " + props.text} onPress={() => console.log('Pressed')} />
@@ -22,4 +22,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default AddButton;
+export default AddButtonComponent;
