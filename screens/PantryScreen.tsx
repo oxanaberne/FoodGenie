@@ -1,7 +1,8 @@
-import React from 'react';
-import { StyleSheet, Text, ScrollView, View } from 'react-native';
-import AddButton from '../components/AddButtonComponent';
+import React, {useState} from 'react';
+import { StyleSheet, Text, View, Modal, Button } from 'react-native';
+import AddButtonComponent from '../components/AddButtonComponent';
 import PanelComponent from '../components/pantry/PanelComponent';
+import PanelZoomComponent from '../components/pantry/PanelZoomComponent';
 
 const PantryScreen = () => {
 	const data1 = [
@@ -9,11 +10,13 @@ const PantryScreen = () => {
 		{ id: '2', text: 'Légumes' },
 		{ id: '3', text: 'Fruits' },		
 	];
-	const data2 = [
-		{ id: '4', text: 'Produits Laitiers Produits' },
-		{ id: '5', text: 'Cereales' },
-		{ id: '6', text: 'Boissons' },
-	];
+	const [modalVisible, setModalVisible] = useState(false);
+	const [modalText, setModalText] = useState('');
+
+	const handlePress = (text: string) => {
+		setModalText(text);
+		setModalVisible(true);
+	  };
 
 	return (
 		<View style={styles.container}>
@@ -21,23 +24,38 @@ const PantryScreen = () => {
 				<Text style={styles.title}>Dans mon placard</Text>
 			</View>
 			<View style={styles.middleSection}>
-				<View style={styles.app}>
-					{data1.map((data, index) => {
-						return <PanelComponent key={index} text={data.text} />;
-					})}
-				</View>
-				<View style={styles.app}>
-					{data2.map((data, index) => {
-						return <PanelComponent key={index} text={data.text} />;
-					})}
-				</View>
+				<MatrixComponent data={data1} onPress={handlePress}/>
+				<Modal transparent={true} visible={modalVisible}>
+					<View style={styles.centeredView}>
+						<View style={styles.modalView}>
+							<Text style={styles.title}>{modalText}</Text>
+							<Button
+							title="X"
+							onPress={() => setModalVisible(!modalVisible)}
+							/>
+							<PanelZoomComponent />
+							
+						</View>
+					</View>
+				</Modal>
 			</View>
 			<View style={styles.section1}>
-				<AddButton text="ajouter un placard"/>
+				<AddButtonComponent text="ajouter un placard"/>
 			</View>
-			
 		</View>
   	);
+}
+
+const MatrixComponent = (props: any) => {
+	return (
+	  <View style={styles.app}>
+		{props.data.map((data: any) => (
+		  <View key={data.id}>
+			<PanelComponent text={data.text} onPress={() => props.onPress(data.text)} />
+		  </View>
+		))}
+	  </View>
+	);
 }
 
 const styles = StyleSheet.create({
@@ -64,6 +82,25 @@ const styles = StyleSheet.create({
 		flexDirection: 'row',
 		flexWrap: 'wrap',
 		justifyContent: 'flex-start',
+	},
+	centeredView: {
+		flex: 1,
+		justifyContent: 'center',
+		alignItems: 'center',
+	},
+	modalView: {
+		margin: 20,
+		backgroundColor: 'white',
+		borderRadius: 20,
+		padding: 35,
+		alignItems: 'center',
+		shadowColor: '#000',
+		shadowOffset: {
+		  width: 0,
+		  height: 2,
+		},
+		shadowOpacity: 0.25,
+		shadowRadius: 4,
 	},
 });
 

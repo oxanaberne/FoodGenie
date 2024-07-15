@@ -1,9 +1,9 @@
 import React from 'react';
-import { View, StyleSheet, Text } from 'react-native';
+import { View, StyleSheet, Text, TouchableOpacity } from 'react-native';
 
 const PanelComponent = (props: any) => {
   return (
-    <View style={styles.container}>
+    <TouchableOpacity style={styles.container} onPress={props.onPress}>
       <View style={styles.panel}>
         <View style={styles.leftSection}>
           <Text style={styles.text}>{props.text}</Text>
@@ -13,7 +13,7 @@ const PanelComponent = (props: any) => {
           <View style={styles.dot} />
         </View>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 
